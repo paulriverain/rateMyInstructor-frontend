@@ -6,7 +6,8 @@ class StudentSignup extends Component {
   state = {
     first_name: "",
     last_name: "",
-    password: ""
+    password: "",
+    error: ""
   }
 
   handleChange = (e) => {
@@ -23,6 +24,20 @@ class StudentSignup extends Component {
       },
       body: JSON.stringify(this.state)
     })
+    .then(resp => resp.json())
+    .then(signUp => {
+      if (signUp.error) {
+        alert("A student with the same last and first name already exists!")
+      }
+      else {
+        alert("Your new account has been created!")
+      }
+    })
+    .then(this.setState({
+      first_name: "",
+      last_name: "",
+      password: ""
+    }))
   }
 
   render(){
