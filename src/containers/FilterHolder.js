@@ -1,13 +1,18 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import FilterForm from '../components/FilterForm';
 import SortDrop from '../components/SortDrop';
+import BootFilter from '../components/BootFilter';
+
 
 class FilterHolder extends Component {
 
-  render(){
-    const filterForm = <FilterForm handleSearch={this.props.handleSearch} term={this.props.term}/>
-    const sortDrop  = <SortDrop />
+//====================================
+//=======Holds Filter Actions=========
 
+  render(){
+    const filterForm = <FilterForm handleInstrSearch={this.props.handleInstrSearch} term={this.props.term}/>
+    const sortDrop  = <SortDrop selectSort={this.props.selectSort}/>
+    const bootFilter = <BootFilter selectBootCamp={this.props.selectBootCamp}/>
 
     return (
       <div className="FilterContainer" >
@@ -15,6 +20,7 @@ class FilterHolder extends Component {
             <h2>Filter Reviews</h2>
             {filterForm}
             {sortDrop}
+            {bootFilter}
 
 
           </div>

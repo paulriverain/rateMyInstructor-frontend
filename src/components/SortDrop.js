@@ -5,16 +5,17 @@ class SortDrop extends Component {
   render() {
     return(
       <div>
-        <label> Please choose to sort with one of the following options: </label>
+        <p>Select the following:
         <select onChange={this.props.selectSort}>
-          <option>Please Select An Option</option>
-          <option value="1">Instructor First Name</option>
-          <option value="2">Instructor Last Name</option>
-          <option value="3">Student First Name</option>
-          <option value="4">Student Last Name</option>
-          <option value="5">Rating: Highest to Lowest</option>
-          <option value="6">Rating: Lowest to Highest</option>
+          <option>Sort By...</option>
+          <option value="1">Inst. First Name</option>
+          <option value="2">Inst. Last Name</option>
+          <option value="3">Stud. First Name</option>
+          <option value="4">Stud. Last Name</option>
+          <option value="5">Rating: High-Low</option>
+          <option value="6">Rating: Low-High</option>
         </select>
+        </p>
       </div>
     )
   }

@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import ReviewCard from '../components/ReviewCard'
 
 class ReviewContainer extends Component {

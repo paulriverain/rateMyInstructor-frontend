@@ -48,7 +48,7 @@ class ReviewCard extends Component {
 
   render(){
     // console.log("PROPS IN THE REVIEW CONTAINER", this.props)
-    console.log(this.props.review.instructor.first_name)
+    // console.log(this.props.review.instructor.first_name)
     const revs = this.props.review
 
     // console.log(this.sanitizeDate)
@@ -66,6 +66,7 @@ class ReviewCard extends Component {
         <h4><i>Rating:</i> {revs.rating}</h4>
         <h5><i>Description:</i>  {revs.comment}</h5>
         <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
+        <p>{revs.instructor.bootcamp_name}</p>
         </div>
     );
   }
