@@ -55,12 +55,17 @@ class ReviewCard extends Component {
     return (
       <div className="ReviewCard">
 
-        <h2>Instructor Name:</h2>
-        <p>{this.sanitizeDate(revs.updated_at)}</p>
-        <h4>{revs.instructor.first_name} {revs.instructor.last_name}</h4>
-        <h4>Student:  {revs.student.first_name} {revs.student.last_name} /  Rating: {revs.rating} </h4>
-        <h5>{revs.comment}</h5>
-        <h2>---------------------</h2>
+        <div className="reviewInfo">
+
+        </div>
+
+
+        <h3><i>Instructor Name:</i></h3>
+        <h2>{revs.instructor.first_name} {revs.instructor.last_name} </h2>
+        <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
+        <h4><i>Rating:</i> {revs.rating}</h4>
+        <h5><i>Description:</i>  {revs.comment}</h5>
+        <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
         </div>
     );
   }

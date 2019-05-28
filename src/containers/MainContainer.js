@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReviewContainer from './ReviewContainer'
+import Header from './Header'
+import FilterHolder from './FilterHolder'
+
 
 class MainContainer extends Component {
 
@@ -17,6 +20,8 @@ class MainContainer extends Component {
   render(){
     return (
       <div className="MainContainer">
+        <Header />
+        <FilterHolder />
         <ReviewContainer reviews={this.state.reviews}/>
       </div>
     );

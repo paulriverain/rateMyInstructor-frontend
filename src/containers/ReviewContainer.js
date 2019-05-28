@@ -10,8 +10,9 @@ class ReviewContainer extends Component {
     })
 
     return (
-      <div className="ui eight column grid" color="blue">
+      <div className="ui eight column grid">
         <div className="ReviewContainer" >
+          <h2>Review List</h2>
           {renderReviews}
         </div>
       </div>
