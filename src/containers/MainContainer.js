@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReviewContainer from './ReviewContainer'
 import Header from './Header'
 import FilterHolder from './FilterHolder'
+import SignInUpHolder from './SignInUpHolder';
+
 
 
 class MainContainer extends Component {
@@ -12,9 +14,9 @@ class MainContainer extends Component {
     reviews: [],
     term: "",
     sortNumber: 0,
-    bootCamp: ""
+    bootCamp: "",
+    currentUser: null
   }
-
 
   //===============================================
   //=================Fetch API=================
@@ -23,7 +25,6 @@ class MainContainer extends Component {
     .then(res=> res.json())
     .then(reviews => this.setState({reviews: reviews}))
   }
-
 
   //===============================================
   //=================Helper Functions==============
@@ -92,6 +93,7 @@ class MainContainer extends Component {
             this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")
           } />
 
+          <SignInUpHolder />
 
       </div>
     );
