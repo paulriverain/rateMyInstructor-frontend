@@ -2,10 +2,13 @@ import React, { Fragment, Component } from 'react';
 
 
 class FilterForm extends Component {
+
+
   render(){
+
     return (
-      <div className="FilterFormHolder" >
-        <h2>Filter Reviews</h2>
+      <div className="FilterHolder" >
+        <p>Instructor's Name: <input type="text" value={this.props.term} onChange={this.props.handleSearch} placeholder="Find by Name"/></p>
       </div>
     );
   }

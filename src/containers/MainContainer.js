@@ -7,7 +7,9 @@ import FilterHolder from './FilterHolder'
 class MainContainer extends Component {
 
   state = {
-    reviews: []
+    reviews: [],
+    term: "",
+    sortNumber: 0
   }
 
   componentDidMount(){
@@ -16,13 +18,21 @@ class MainContainer extends Component {
     .then(reviews => this.setState({reviews: reviews}))
   }
 
+  handleSearch = (e) => {
+    // console.log(e.target.value)
+    this.setState({term: e.target.value})
+  }
+
 
   render(){
+    const filteredReviews = this.state.reviews.filter( review => {
+      return review.instructor.first_name.toLowerCase().includes(this.state.term.toLowerCase()) || review.instructor.last_name.toLowerCase().includes(this.state.term.toLowerCase())
+    })
     return (
       <div className="MainContainer">
         <Header />
-        <FilterHolder />
-        <ReviewContainer reviews={this.state.reviews}/>
+        <FilterHolder handleSearch={this.handleSearch} term={this.state.term} selectSort={this.handleSort}/>
+        <ReviewContainer  reviews={filteredReviews}/>
       </div>
     );
   }
