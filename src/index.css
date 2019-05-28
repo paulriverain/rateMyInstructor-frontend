@@ -57,3 +57,20 @@ code {
   padding-right: 5%;
   padding-left: 5%;
 }
+
+.SignHolder{
+  border: 1px solid #999;
+  background: lightgreen;
+  height: auto;
+  width: 20%;
+  min-width: 140px;
+  margin-top: 5%;
+  margin-right: 2%;
+  margin-left: 5%;
+  float: left;
+  float: bottom;
+}
+
+.SigningHolder{
+  border: 1px solid #999;
+}
