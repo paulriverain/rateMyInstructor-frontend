@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import ReviewCard from '../components/ReviewCard'
 
 class ReviewContainer extends Component {
@@ -10,8 +10,9 @@ class ReviewContainer extends Component {
     })
 
     return (
-      <div className="ui eight column grid" color="blue">
+      <div className="ui eight column grid">
         <div className="ReviewContainer" >
+          <h2>Review List</h2>
           {renderReviews}
         </div>
       </div>

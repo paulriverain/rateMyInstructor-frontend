@@ -12,6 +12,48 @@ code {
     monospace;
 }
 
-.ReviewContainer {
-  background: lightblue
+.MainContainer{
+  /* height: 110vh; */
+  /* padding-bottom: 5% */
+}
+
+.HeaderContainer{
+  background: lightgrey;
+  height: 10vh;
+  text-align: center;
+  padding-top: .5vh;
+}
+
+.FilterFormHolder{
+  border: 1px solid #999;
+  background: lightgreen;
+  height: auto;
+  width: 20%;
+  min-width: 140px;
+  margin-top: 5%;
+  margin-right: 2%;
+  margin-left: 5%;
+  float: left;
+}
+
+.ReviewContainer{
+  background-color: aqua;
+  border: 1px dashed;
+  margin-right: 5%;
+  margin-left: 2.5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  float: right;
+  width: 60%;
+  min-width: 250px;
+
+}
+
+.ReviewCard {
+  background: lightblue;
+  border: 1px solid #999;
+  align-items: center;
+  width: auto;
+  padding-right: 5%;
+  padding-left: 5%;
 }
