@@ -45,6 +45,9 @@ class MainContainer extends Component {
     this.setState({bootCamp: e.target.value})
   }
 
+
+
+
   //===============================================
   //=================Filter/Sort Function Helpers=======
 
@@ -92,8 +95,8 @@ class MainContainer extends Component {
           reviews={
             this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")
           } />
+          <SignInUpHolder signedIn={this.state.currentUser} />
 
-          <SignInUpHolder />
 
       </div>
     );

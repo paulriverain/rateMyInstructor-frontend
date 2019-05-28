@@ -6,16 +6,17 @@ import StudentSignup from '../components/StudentSignup'
 class SignInUpHolder extends Component {
 
   render(){
-
-    const signIn = <StudentSignin/>
+    // console.log(this.props);
+    const signIn = <StudentSignin />
     const signUp = <StudentSignup/>
-
+    const createBtn = <button />
 
     return (
       <div className="SignHolder" >
         <h3><i>Sign In</i></h3>
-        {signIn}
-        {signUp}
+        {this.props.signedIn == null ? signIn : ""}
+        {this.props.signedIn == null ? signUp : ""}
+
       </div>
     );
   }

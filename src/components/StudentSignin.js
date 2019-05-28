@@ -7,8 +7,12 @@ class StudentSignin extends Component {
   render(){
 
     return (
-      <div >
-        <p>User Name: <input type="text"  placeholder="User Name"/></p>
+      <div className="SigningHolder">
+        <form>
+          User Name: <input type="text"  placeholder="user name"/>
+          Password: <input type="text"  placeholder="password"/>
+          <input type="submit" value="Submit"/>
+        </form>
       </div>
     );
   }
