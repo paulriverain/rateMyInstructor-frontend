@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ReviewCard from '../components/ReviewCard'
 import CreateReview from '../components/CreateReview'
 
-
 class ReviewContainer extends Component {
+
+
 
   render(){
     console.log("PROPS IN THE REVIEW CONTAINER", this.props)
     const renderReviews = this.props.reviews.map( review => {
-      return <ReviewCard review={review} key={review.id}/>
+      return <ReviewCard review={review} key={review.id} signedIn={this.props.signedIn}/>
     })
     const createReview = <CreateReview signedIn={this.props.signedIn} />
     return (
