@@ -21,8 +21,6 @@ class FilterHolder extends Component {
             {filterForm}
             {sortDrop}
             {bootFilter}
-
-
           </div>
       </div>
     );

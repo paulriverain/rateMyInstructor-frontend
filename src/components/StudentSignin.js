@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// import { withRouter } from 'react-router-dom'
 
 class StudentSignin extends Component {
 
@@ -13,32 +13,34 @@ class StudentSignin extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-handlesLoginFetch= (e) => {
-  e.preventDefault()
-  fetch('http://localhost:3000/api/v1/auth',{
-    method: 'POST',
-    headers:{
-      "Content-Type": 'application/json',
-      Accept: 'application/json'
-    },
-    body: JSON.stringify(this.state)
-  })
-  .then(resp => resp.json())
-  .then(legitimate => {
-    if (legitimate.error) {
-      alert(legitimate.error)
-    }
-    else {
-      alert("You have successfully signed in!")
-    }
-  })
-  .then(this.setState({
-    first_name: "",
-    last_name: "",
-    password: ""
-  }))
 
-}
+  handlesLoginFetch= (e) => {
+    e.preventDefault()
+    fetch('http://localhost:3000/api/v1/auth',{
+      method: 'POST',
+      headers:{
+        "Content-Type": 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(resp => resp.json())
+    .then(loginInfo => {
+      if (loginInfo.error) {
+        alert(loginInfo.error)
+      }
+      else {
+        this.props.onLogin(loginInfo)
+        alert("You have successfully signed in!")
+      }
+    })
+    .then(this.setState({
+      first_name: "",
+      last_name: "",
+      password: ""
+    }))
+
+  }
 
 // console.log(this.state)
   render(){
@@ -55,3 +57,4 @@ handlesLoginFetch= (e) => {
   }
 }
 export default StudentSignin;
+// export default withRouter(StudentSignin);
