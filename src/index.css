@@ -73,4 +73,6 @@ code {
 
 .SigningHolder{
   border: 1px solid #999;
+  min-height: auto;
+  height: 25vh;
 }

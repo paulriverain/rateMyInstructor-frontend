@@ -9,7 +9,7 @@ class SignInUpHolder extends Component {
     // console.log(this.props);
     const signIn = <StudentSignin />
     const signUp = <StudentSignup/>
-    const createBtn = <button />
+
 
     return (
       <div className="SignHolder" >
