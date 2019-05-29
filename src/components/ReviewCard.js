@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import EditReview from '../components/EditReview'
+
 
 class ReviewCard extends Component {
+
+  state = {
+    editing: false
+  }
+
   sanitizeDate = (string) => {
     // console.log(string.slice(5,7))
     let month_number = parseInt(string.slice(5,7), 10)
@@ -46,27 +53,28 @@ class ReviewCard extends Component {
     return `${month_name} ${date}, ${year}`
   };
 
+handleClick = (e) =>{
+  this.setState({editing: !this.state.editing})
+}
+
   render(){
     // console.log("PROPS IN THE REVIEW CONTAINER", this.props)
     // console.log(this.props.review.instructor.first_name)
     const revs = this.props.review
-
+    const me = this.props.signedIn
     // console.log(this.sanitizeDate)
     return (
       <div className="ReviewCard">
-
-        <div className="reviewInfo">
-
-        </div>
-
-
-        <h3><i>Instructor Name:</i></h3>
-        <h2>{revs.instructor.first_name} {revs.instructor.last_name} </h2>
-        <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
-        <h4><i>Rating:</i> {revs.rating}</h4>
-        <h5><i>Description:</i>  {revs.comment}</h5>
-        <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
-        <p>{revs.instructor.bootcamp_name}</p>
+      { !this.state.editing ?<div className="reviewInfo">
+          <h3><i>Instructor Name:</i></h3>
+          <h2>{revs.instructor.first_name} {revs.instructor.last_name} </h2>
+          <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
+          <h4><i>Rating:</i> {revs.rating}</h4>
+          <h5><i>Description:</i>  {revs.comment}</h5>
+          <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
+          <p>{revs.instructor.bootcamp_name}</p>
+          <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
+          </div>: <EditReview signedIn={this.props.signedIn} review={this.props.review} handleClick={this.handleClick}/>}
         </div>
     );
   }
