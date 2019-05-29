@@ -19,7 +19,8 @@ code {
 
 .HeaderContainer{
   background: lightgrey;
-  height: 10vh;
+  height: auto;
+  min-height: 10vh;
   text-align: center;
   padding-top: .5vh;
 }
@@ -73,4 +74,11 @@ code {
 
 .SigningHolder{
   border: 1px solid #999;
+  min-height: auto;
+  height: 25vh;
+}
+
+.WriteRev{
+  border: 1px solid #999;
+  background-color: lightgrey; 
 }

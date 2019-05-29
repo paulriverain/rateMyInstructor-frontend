@@ -15,15 +15,31 @@ class MainContainer extends Component {
     term: "",
     sortNumber: 0,
     bootCamp: "",
-    currentUser: null
+    currentStudent: null
   }
 
   //===============================================
   //=================Fetch API=================
   componentDidMount(){
+    //Fetches for all the reviews
     fetch('http://localhost:3000/api/v1/reviews')
     .then(res=> res.json())
     .then(reviews => this.setState({reviews: reviews}))
+    //Fetches for the token
+    const token = localStorage.getItem('token')
+    if(token) {
+      fetch('http://localhost:3000/api/v1/current_user', {
+        headers: {
+          Authenticate: token
+        }
+      })
+      .then(resp => resp.json())
+      .then(student => {
+        if (!student.error) {
+          this.setState({currentStudent: student})
+        }
+      })
+    }
   }
 
   //===============================================
@@ -43,6 +59,17 @@ class MainContainer extends Component {
   //Filters based on BootCamp Selection
   handleBoot = (e) =>{
     this.setState({bootCamp: e.target.value})
+  }
+  //login button, takes current student info as arg
+  handleLogin = (loginInfo) =>{
+    console.log("LOGIN INFO IS", loginInfo)
+    localStorage.setItem("token", loginInfo.token)
+    this.setState({currentStudent: loginInfo})
+  }
+  //logout button, resets currentStudent to nill
+  handleLogoutClick = ()=>{
+    localStorage.removeItem("token")
+    this.setState({currentStudent: null})
   }
 
 
@@ -86,18 +113,20 @@ class MainContainer extends Component {
    //===============================================
    //=================Render All that good good======
   render(){
-    console.log(this.state.bootCamp)
+    console.log("MAIN CONTAINER, WHAT IS CURRENT USER?", this.state)
+    const currStud = this.state.currentStudent
     return (
       <div className="MainContainer">
-        <Header />
+        <Header signedIn={currStud}/>
+
         <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
+
         <ReviewContainer
           reviews={
             this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")
-          } />
-          <SignInUpHolder signedIn={this.state.currentUser} />
+          } signedIn={currStud}/>
 
-
+          <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
       </div>
     );
   }
