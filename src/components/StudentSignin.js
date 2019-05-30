@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-// import { withRouter } from 'react-router-dom'
+import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom'
 
 class StudentSignin extends Component {
 
@@ -39,12 +39,15 @@ class StudentSignin extends Component {
       last_name: "",
       password: ""
     }))
-
+    console.log(this.props);
+    // this.props.history.push("/")
   }
 
 // console.log(this.state)
   render(){
+    console.log("PROPS THAT WE ARE INTERESTED IN", this.props)
     return (
+      <Fragment>
       <div className="SigningHolder">
         <form onSubmit={this.handlesLoginFetch}>
           First Name: <input type="text" placeholder="first name" name="first_name" value={this.state.first_name} onChange={this.handleChange}/><br />
@@ -53,6 +56,8 @@ class StudentSignin extends Component {
           <input type="submit" value="Submit"/>
         </form>
       </div>
+      
+      </Fragment>
     );
   }
 }

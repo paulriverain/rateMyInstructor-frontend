@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReviewContainer from './ReviewContainer'
 import Header from './Header'
 import FilterHolder from './FilterHolder'
 import SignInUpHolder from './SignInUpHolder';
-
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 
 class MainContainer extends Component {
@@ -16,6 +16,7 @@ class MainContainer extends Component {
     sortNumber: 0,
     bootCamp: "",
     currentStudent: null
+
   }
 
   //===============================================
@@ -65,14 +66,18 @@ class MainContainer extends Component {
     console.log("LOGIN INFO IS", loginInfo)
     localStorage.setItem("token", loginInfo.token)
     this.setState({currentStudent: loginInfo})
+    this.props.history.push("/")
   }
   //logout button, resets currentStudent to nill
   handleLogoutClick = ()=>{
     localStorage.removeItem("token")
     this.setState({currentStudent: null})
+    this.props.history.push("/")
   }
 
-
+  getToLogin = () => {
+    this.props.history.push("/login")
+  }
 
 
   //===============================================
@@ -107,27 +112,41 @@ class MainContainer extends Component {
    }
 
 
-
-
-
    //===============================================
    //=================Render All that good good======
+   // const goHome = <Redirect to="/" />
   render(){
+    console.log(this.state.currentStudent);
     const currStud = this.state.currentStudent
     return (
+
       <div className="MainContainer">
         <Header signedIn={currStud}/>
 
-        <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
-        <ReviewContainer
-          reviews={
-            this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")
-          } signedIn={currStud}/>
+          <Route exact path="/" render={ () => {
 
-          <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
+            return (
+              <Fragment>
+              <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
+
+              <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}/>
+
+              {this.state.currentStudent ?
+                <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
+              }
+              </Fragment>
+            )
+          }}/>
+
+          <Route exact path="/login" render={ () => {
+            return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
+          }}/>
+
+    
       </div>
     );
   }
 }
-export default MainContainer;
+export default withRouter(MainContainer);
