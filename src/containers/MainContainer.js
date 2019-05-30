@@ -16,6 +16,7 @@ class MainContainer extends Component {
     sortNumber: 0,
     bootCamp: "",
     currentStudent: null
+
   }
 
   //===============================================
@@ -65,15 +66,18 @@ class MainContainer extends Component {
     console.log("LOGIN INFO IS", loginInfo)
     localStorage.setItem("token", loginInfo.token)
     this.setState({currentStudent: loginInfo})
+    this.props.history.push("/")
   }
   //logout button, resets currentStudent to nill
   handleLogoutClick = ()=>{
     localStorage.removeItem("token")
     this.setState({currentStudent: null})
-    this.props.history.push("/login")
+    this.props.history.push("/")
   }
 
-
+  getToLogin = () => {
+    this.props.history.push("/login")
+  }
 
 
   //===============================================
@@ -115,9 +119,10 @@ class MainContainer extends Component {
     console.log(this.state.currentStudent);
     const currStud = this.state.currentStudent
     return (
-      <Router>
-        <div className="MainContainer">
-          <Header signedIn={currStud}/>
+
+      <div className="MainContainer">
+        <Header signedIn={currStud}/>
+
 
           <Route exact path="/" render={ () => {
 
@@ -128,8 +133,8 @@ class MainContainer extends Component {
               <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}/>
 
               {this.state.currentStudent ?
-                <div className="SignHolder"><p><button type='button' onClick={this.props.onLogout} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
-                : null
+                <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
               }
               </Fragment>
             )
@@ -138,8 +143,9 @@ class MainContainer extends Component {
           <Route exact path="/login" render={ () => {
             return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
-        </div>
-      </Router>
+
+    
+      </div>
     );
   }
 }
