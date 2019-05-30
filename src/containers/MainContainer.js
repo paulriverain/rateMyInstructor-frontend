@@ -113,7 +113,6 @@ class MainContainer extends Component {
    //===============================================
    //=================Render All that good good======
   render(){
-    console.log("MAIN CONTAINER, WHAT IS CURRENT USER?", this.state)
     const currStud = this.state.currentStudent
     return (
       <div className="MainContainer">

@@ -9,7 +9,6 @@ class ReviewCard extends Component {
   }
 
   sanitizeDate = (string) => {
-    // console.log(string.slice(5,7))
     let month_number = parseInt(string.slice(5,7), 10)
     let year = string.slice(0,4)
     let date = parseInt(string.slice(8,10), 10)
@@ -58,11 +57,8 @@ handleClick = (e) =>{
 }
 
   render(){
-    // console.log("PROPS IN THE REVIEW CONTAINER", this.props)
-    // console.log(this.props.review.instructor.first_name)
     const revs = this.props.review
     const me = this.props.signedIn
-    // console.log(this.sanitizeDate)
     return (
       <div className="ReviewCard">
       { !this.state.editing ?<div className="reviewInfo">

@@ -41,7 +41,6 @@ class StudentSignup extends Component {
   }
 
   render(){
-    console.log(this.state)
     return (
       <div className="SigningHolder">
         <form onSubmit={this.createNewStudent}>
