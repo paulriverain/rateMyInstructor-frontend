@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReviewContainer from './ReviewContainer'
 import Header from './Header'
 import FilterHolder from './FilterHolder'
 import SignInUpHolder from './SignInUpHolder';
-
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 
 class MainContainer extends Component {
@@ -70,6 +70,7 @@ class MainContainer extends Component {
   handleLogoutClick = ()=>{
     localStorage.removeItem("token")
     this.setState({currentStudent: null})
+    this.props.history.push("/login")
   }
 
 
@@ -107,27 +108,39 @@ class MainContainer extends Component {
    }
 
 
-
-
-
    //===============================================
    //=================Render All that good good======
+   // const goHome = <Redirect to="/" />
   render(){
+    console.log(this.state.currentStudent);
     const currStud = this.state.currentStudent
     return (
-      <div className="MainContainer">
-        <Header signedIn={currStud}/>
+      <Router>
+        <div className="MainContainer">
+          <Header signedIn={currStud}/>
 
-        <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
+          <Route exact path="/" render={ () => {
 
-        <ReviewContainer
-          reviews={
-            this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")
-          } signedIn={currStud}/>
+            return (
+              <Fragment>
+              <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
-          <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
-      </div>
+              <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}/>
+
+              {this.state.currentStudent ?
+                <div className="SignHolder"><p><button type='button' onClick={this.props.onLogout} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                : null
+              }
+              </Fragment>
+            )
+          }}/>
+
+          <Route exact path="/login" render={ () => {
+            return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
+          }}/>
+        </div>
+      </Router>
     );
   }
 }
-export default MainContainer;
+export default withRouter(MainContainer);

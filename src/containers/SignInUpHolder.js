@@ -3,13 +3,18 @@ import React, { Component } from 'react';
 import StudentSignin from '../components/StudentSignin'
 import StudentSignup from '../components/StudentSignup'
 
+import { BrowserRouter as Router, withRouter } from 'react-router-dom'
+
 class SignInUpHolder extends Component {
 
 
 
 
   render(){
-    const signIn = <StudentSignin onLogin={this.props.onLogin}/>
+    const signIn =
+      <Router>
+        <StudentSignin onLogin={this.props.onLogin}/>
+      </Router>
     const signUp = <StudentSignup/>
 
 
@@ -28,4 +33,4 @@ class SignInUpHolder extends Component {
     );
   }
 }
-export default SignInUpHolder;
+export default withRouter(SignInUpHolder);
