@@ -21,7 +21,6 @@ class CreateReviewForm extends Component {
 
   handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name);
     this.setState(prevState => ({
       ...prevState,
       review: {
@@ -54,9 +53,6 @@ class CreateReviewForm extends Component {
   }
 
   render(){
-    // console.log('Rev Form Props: ', this.props);
-
-    console.log("TYPING IN THE REVIEW FORM", this.state.review)
     return (
       <div className="CreateReviewForm" >
       <form onSubmit={this.submitHandler} >

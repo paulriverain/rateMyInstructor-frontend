@@ -9,7 +9,6 @@ class SignInUpHolder extends Component {
 
 
   render(){
-    // console.log(this.props);
     const signIn = <StudentSignin onLogin={this.props.onLogin}/>
     const signUp = <StudentSignup/>
 

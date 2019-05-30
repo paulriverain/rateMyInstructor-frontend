@@ -11,9 +11,7 @@ handleCreateClick =()=>{
   this.setState({reviewForm: !this.state.reviewForm})
 }
 
-  // const reviewForm = <ReviewForm />
   render(){
-
     const studName = this.props.signedIn
     return (
       <div className="CreateReview" >

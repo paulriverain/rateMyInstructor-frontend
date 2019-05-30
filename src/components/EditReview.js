@@ -87,27 +87,28 @@ class EditReview extends Component {
       body: JSON.stringify(this.state.review)
     })
     .then(resp=>resp.json())
-    .then(console.log)
-    // .then(this.setState(prevState => ({
-    // //   ...prevState,
-    //   review: {
-    //       instructor_id: this.props.review.instructor_id,
-    //       student_id: this.props.signedIn.id,
-    //       comment: this.props.review.comment,
-    //       rating: this.props.review.rating
-    //   }
-    // })))
+    .then(response => alert(response.message))
+    //route work....
+  }
+
+  handleDelete = (e) =>{
+    fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(this.state.review)
+    })
+    .then(resp=>resp.json())
+    .then(response => alert(response.message))
   }
 
 
 
-
-
   render(){
-    console.log("THIS is a thing we want::::", this.props.review)
     const revs = this.props.review
     const me = this.props.signedIn
-    // console.log(this.sanitizeDate)
     return (
       <div className="EditReview">
           <form onSubmit={this.submitHandler} >
@@ -118,6 +119,7 @@ class EditReview extends Component {
             <p>Description: <textarea  placeholder="description" name="comment" value={this.state.review.comment} onChange={this.handleChange}/></p>
             <p><input type="submit" value="Submit"/></p>
           </form>
+          <button value="deleteBtn" onClick={this.handleDelete}>Delete Review</button>
         <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.props.handleClick}>Back to Review</button> : null) : null}</p>
         </div>
     );
