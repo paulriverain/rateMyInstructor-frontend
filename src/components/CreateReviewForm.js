@@ -41,6 +41,8 @@ class CreateReviewForm extends Component {
       },
       body: JSON.stringify(this.state.review)
     })
+    .then(resp => resp.json())
+    .then(review => this.props.rerendersCards(review))
     .then(this.setState(prevState => ({
       ...prevState,
       review: {

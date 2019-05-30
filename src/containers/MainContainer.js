@@ -79,6 +79,10 @@ class MainContainer extends Component {
     this.props.history.push("/login")
   }
 
+  handleRerenderHome = (review) => {
+    // debugger
+    this.setState({reviews: [...this.state.reviews, review]})
+  }
 
   //===============================================
   //=================Filter/Sort Function Helpers=======
@@ -130,7 +134,8 @@ class MainContainer extends Component {
               <Fragment>
               <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
-              <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}/>
+              <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}
+              rerendersCards={this.handleRerenderHome} />
 
               {this.state.currentStudent ?
                 <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
@@ -144,7 +149,7 @@ class MainContainer extends Component {
             return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
 
-    
+
       </div>
     );
   }

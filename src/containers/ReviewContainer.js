@@ -11,7 +11,7 @@ class ReviewContainer extends Component {
     const renderReviews = this.props.reviews.map( review => {
       return <ReviewCard review={review} key={review.id} signedIn={this.props.signedIn}/>
     })
-    const createReview = <CreateReview signedIn={this.props.signedIn} />
+    const createReview = <CreateReview rerendersCards={this.props.rerendersCards} signedIn={this.props.signedIn} />
     return (
       <div className="ui eight column grid">
         <div className="ReviewContainer" >
