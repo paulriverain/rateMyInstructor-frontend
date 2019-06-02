@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CreateReviewForm from './CreateReviewForm'
+import { withRouter } from 'react-router-dom';
+
 
 class CreateReview extends Component {
   state ={
@@ -18,7 +20,7 @@ handleCreateClick =()=>{
           { studName ?
             <div className="WriteRev">
               <p><button onClick={this.handleCreateClick}><h3>Create a Review</h3></button></p>
-              {this.state.reviewForm ? <CreateReviewForm studName={this.props.signedIn} /> : null}
+              {this.state.reviewForm ? <CreateReviewForm rerendersCards={this.props.rerendersCards} studName={this.props.signedIn} /> : null}
             </div>
             : null
           }
@@ -26,4 +28,4 @@ handleCreateClick =()=>{
     );
   }
 }
-export default CreateReview;
+export default withRouter(CreateReview);

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { withRouter } from 'react-router-dom';
+
 
 class CreateReviewForm extends Component {
   state = {
@@ -33,6 +35,8 @@ class CreateReviewForm extends Component {
 
   submitHandler = (e) =>{
     e.preventDefault()
+    // this.props.rerendersCards(this.state.review)///-====-
+
     fetch('http://localhost:3000/api/v1/reviews',{
       method: "POST",
       headers:{
@@ -41,6 +45,8 @@ class CreateReviewForm extends Component {
       },
       body: JSON.stringify(this.state.review)
     })
+    .then(resp => resp.json())
+    .then(review => this.props.rerendersCards(review))
     .then(this.setState(prevState => ({
       ...prevState,
       review: {
@@ -50,11 +56,13 @@ class CreateReviewForm extends Component {
         rating: 0
       }
     })))
-    // debugger
+      // this.setState({reviews: [...reviews, this.state.review]})
   }
 
   render(){
     return (
+
+
       <div className="CreateReviewForm" >
       <form onSubmit={this.submitHandler} >
         <select name="instructor_id" onChange={this.handleChange}>
@@ -71,7 +79,8 @@ class CreateReviewForm extends Component {
         </form>
 
       </div>
-    );
+  );
+
   }
 }
-export default CreateReviewForm;
+export default CreateReviewForm;//withRouter(CreateReviewForm);

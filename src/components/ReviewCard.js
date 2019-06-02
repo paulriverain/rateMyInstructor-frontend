@@ -57,6 +57,7 @@ handleClick = (e) =>{
 }
 
   render(){
+    console.log(this.props);
     const revs = this.props.review
     const me = this.props.signedIn
     return (
@@ -70,7 +71,7 @@ handleClick = (e) =>{
           <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
           <p>{revs.instructor.bootcamp_name}</p>
           <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
-          </div>: <EditReview signedIn={this.props.signedIn} review={this.props.review} handleClick={this.handleClick}/>}
+          </div>: <EditReview editRerendersCards={this.props.editRerendersCards} signedIn={this.props.signedIn} review={this.props.review} handleClick={this.handleClick} rerendersCards={this.props.rerendersCards}/>}
         </div>
     );
   }

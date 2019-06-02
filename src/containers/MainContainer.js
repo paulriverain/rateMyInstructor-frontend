@@ -3,7 +3,7 @@ import ReviewContainer from './ReviewContainer'
 import Header from './Header'
 import FilterHolder from './FilterHolder'
 import SignInUpHolder from './SignInUpHolder';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 
 class MainContainer extends Component {
@@ -15,8 +15,8 @@ class MainContainer extends Component {
     term: "",
     sortNumber: 0,
     bootCamp: "",
-    currentStudent: null
-
+    currentStudent: null,
+    renderState: false
   }
 
   //===============================================
@@ -79,12 +79,34 @@ class MainContainer extends Component {
     this.props.history.push("/login")
   }
 
+  handleRerenderHome = (review) => {
+    // debugger
+    this.setState({reviews: [review, ...this.state.reviews]})
+  }
+
+  handleEditRerenderHome = (editedReview) => {
+    // if (editedReview){}
+    const editReviewList = this.state.reviews.map( review => {
+      // debugger
+      if (review.id !== parseInt(editedReview.id)) {
+        return review
+      }
+      else {
+        // debugger
+        return editedReview
+      }
+    })
+    this.setState({reviews: editReviewList})
+  }
+
+
 
   //===============================================
   //=================Filter/Sort Function Helpers=======
 
   //long hand way to sort through cards based on selected imput
   displayReviews = () => {
+    // console.log(this.state.reviews)
      const filteredReviews = this.state.reviews.filter( review => {
        return review.instructor.first_name.toLowerCase().includes(this.state.term.toLowerCase()) || review.instructor.last_name.toLowerCase().includes(this.state.term.toLowerCase())
      })
@@ -114,7 +136,7 @@ class MainContainer extends Component {
 
    //===============================================
    //=================Render All that good good======
-   // const goHome = <Redirect to="/" />
+
   render(){
     console.log(this.state.currentStudent);
     const currStud = this.state.currentStudent
@@ -128,14 +150,14 @@ class MainContainer extends Component {
 
             return (
               <Fragment>
-              <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
+                <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
-              <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} signedIn={currStud}/>
+                <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} signedIn={currStud}/>
 
-              {this.state.currentStudent ?
-                <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
-                : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
-              }
+                {this.state.currentStudent ?
+                  <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                  : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
+                }
               </Fragment>
             )
           }}/>
@@ -144,7 +166,7 @@ class MainContainer extends Component {
             return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
 
-    
+
       </div>
     );
   }
