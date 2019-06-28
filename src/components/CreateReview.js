@@ -19,7 +19,9 @@ handleCreateClick =()=>{
       <div className="CreateReview" >
           { studName ?
             <div className="WriteRev">
-              <p><button onClick={this.handleCreateClick}><h3>Create a Review</h3></button></p>
+            <br />
+              <button onClick={this.handleCreateClick}><h3>Create a Review</h3></button>
+              <br /><br />
               {this.state.reviewForm ? <CreateReviewForm rerendersCards={this.props.rerendersCards} studName={this.props.signedIn} /> : null}
             </div>
             : null

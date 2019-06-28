@@ -5,7 +5,7 @@ class SortDrop extends Component {
   render() {
     return(
       <div>
-        <p>Select the following:
+        <h4>Select the following: </h4>
         <select onChange={this.props.selectSort}>
           <option>Sort By...</option>
           <option value="1">Inst. First Name</option>
@@ -15,7 +15,7 @@ class SortDrop extends Component {
           <option value="5">Rating: High-Low</option>
           <option value="6">Rating: Low-High</option>
         </select>
-        </p>
+        
       </div>
     )
   }

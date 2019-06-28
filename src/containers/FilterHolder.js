@@ -18,9 +18,13 @@ class FilterHolder extends Component {
       <div className="FilterContainer" >
         <div className = "FilterFormHolder">
             <h2>Filter Reviews</h2>
+            <br />
             {filterForm}
+            <br />
             {sortDrop}
+            <br />
             {bootFilter}
+            <br />
           </div>
       </div>
     );

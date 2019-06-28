@@ -9,7 +9,7 @@ class SignInUpHolder extends Component {
 
 
 
-
+  
   render(){
     const signIn =
       <Router>
@@ -29,7 +29,7 @@ class SignInUpHolder extends Component {
           </div>) :
         <p><button type='button' onClick={this.props.onLogout} name="logoutBtn"><h3>LOG OUT</h3></button></p>
       }
-      </div>
+    </div>
     );
   }
 }

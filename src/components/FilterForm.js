@@ -8,7 +8,7 @@ class FilterForm extends Component {
 
     return (
       <div className="FilterHolder" >
-        <p>Instructor's Name: <input type="text" value={this.props.term} onChange={this.props.handleInstrSearch} placeholder="Find by Name"/></p>
+        <h4>Instructor's Name: </h4><input type="text" value={this.props.term} onChange={this.props.handleInstrSearch} placeholder="Find by Name"/>
       </div>
     );
   }

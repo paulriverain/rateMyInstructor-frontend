@@ -4,6 +4,7 @@ import Header from './Header'
 import FilterHolder from './FilterHolder'
 import SignInUpHolder from './SignInUpHolder';
 import { Route, withRouter } from 'react-router-dom';
+import 'semantic-ui/dist/semantic.min.css';
 
 
 class MainContainer extends Component {
@@ -153,15 +154,19 @@ handleDelete = (thisReview) =>{
 
             return (
               <Fragment>
-                <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
+
+                <div className="barshifter">
+                  <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/><br />
+
+                  {this.state.currentStudent ?
+                    <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                    : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
+                  }
+                </div>
 
                 <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} deleteCards={this.handleDelete} signedIn={currStud}/>
 
 
-                {this.state.currentStudent ?
-                  <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
-                  : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
-                }
               </Fragment>
             )
           }}/>
