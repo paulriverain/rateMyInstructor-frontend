@@ -76,7 +76,6 @@ class EditReview extends Component {
 
 
   submitHandler = (e) =>{
-    e.preventDefault()
     console.log(e);
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
       method: "PATCH",
@@ -86,12 +85,21 @@ class EditReview extends Component {
       },
       body: JSON.stringify(this.state.review)
     })
-    .then(resp=>resp.json())
-    .then(response => alert(response.message))
+    .then(returnedPromise => returnedPromise.json())
+    // .then(console.log)
+    .then(response => {
+      // debugger
+      this.props.editRerendersCards(response.review);
+      alert(response.message)
+    })
+ ////------------------------
     //route work....
   }
 
   handleDelete = (e) =>{
+    e.preventDefault()
+    this.props.deleteCards(this.props.review)
+
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
       method: "DELETE",
       headers:{
@@ -100,6 +108,7 @@ class EditReview extends Component {
       },
       body: JSON.stringify(this.state.review)
     })
+
     .then(resp=>resp.json())
     .then(response => alert(response.message))
   }

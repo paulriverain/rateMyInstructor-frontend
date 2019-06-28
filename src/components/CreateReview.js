@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CreateReviewForm from './CreateReviewForm'
+import { withRouter } from 'react-router-dom';
+
 
 class CreateReview extends Component {
   state ={
@@ -26,4 +28,4 @@ handleCreateClick =()=>{
     );
   }
 }
-export default CreateReview;
+export default withRouter(CreateReview);
