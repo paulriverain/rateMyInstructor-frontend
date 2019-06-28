@@ -98,6 +98,8 @@ class EditReview extends Component {
 
   handleDelete = (e) =>{
     e.preventDefault()
+    this.props.deleteCards(this.props.review)
+
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
       method: "DELETE",
       headers:{
@@ -108,15 +110,7 @@ class EditReview extends Component {
     })
 
     .then(resp=>resp.json())
-    // .then(console.log)
     .then(response => alert(response.message))
-
-    .then(response => { this.props.rerendersCards() })
-
-
-
-    // .then(resp=>resp.json())
-    // .then(review => this.props.editRerendersCards(review))////------------------------
   }
 
 

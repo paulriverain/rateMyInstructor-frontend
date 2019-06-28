@@ -99,7 +99,9 @@ class MainContainer extends Component {
     this.setState({reviews: editReviewList})
   }
 
-
+handleDelete = (thisReview) =>{
+  this.setState({reviews: this.state.reviews.filter((review) => review !== thisReview)})
+}
 
   //===============================================
   //=================Filter/Sort Function Helpers=======
@@ -152,7 +154,7 @@ class MainContainer extends Component {
               <Fragment>
                 <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
-                <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} signedIn={currStud}/>
+                <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} deleteCards={this.handleDelete} signedIn={currStud}/>
 
                 {this.state.currentStudent ?
                   <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>

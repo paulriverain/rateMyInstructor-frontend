@@ -11,7 +11,7 @@ class ReviewContainer extends Component {
   render(){
     console.log("PROPS IN THE REVIEW CONTAINER", this.props)
     const renderReviews = this.props.reviews.map( review => {
-      return <ReviewCard editRerendersCards={this.props.editRerendersCards} review={review} key={review.id} signedIn={this.props.signedIn} rerendersCards={this.props.rerendersCards}/>
+      return <ReviewCard editRerendersCards={this.props.editRerendersCards} deleteCards={this.props.deleteCards} review={review} key={review.id} signedIn={this.props.signedIn} rerendersCards={this.props.rerendersCards}/>
     })
     const createReview = <CreateReview rerendersCards={this.props.rerendersCards} signedIn={this.props.signedIn} />
     return (
