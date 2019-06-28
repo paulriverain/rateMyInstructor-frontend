@@ -146,9 +146,13 @@ handleDelete = (thisReview) =>{
     const currStud = this.state.currentStudent
     return (
 
-      <div className="MainContainer">
+      <div>
         <Header signedIn={currStud}/>
+        <div className="MainContainer">
 
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
 
           <Route exact path="/" render={ () => {
 
@@ -163,7 +167,6 @@ handleDelete = (thisReview) =>{
                     : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
                   }
                 </div>
-
                 <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} deleteCards={this.handleDelete} signedIn={currStud}/>
 
 
@@ -175,7 +178,7 @@ handleDelete = (thisReview) =>{
             return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
 
-
+          </div>
       </div>
     );
   }

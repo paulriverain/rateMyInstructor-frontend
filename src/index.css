@@ -12,10 +12,7 @@ code {
     monospace;
 }
 
-.MainContainer{
-  /* height: 110vh; */
-  /* padding-bottom: 5% */
-}
+
 
 .HeaderContainer{
   background: lightgrey;
@@ -28,24 +25,30 @@ code {
 .HeaderContainer h1 {
   padding-top: 10px;
   font-size: 3.8em;
-  text-shadow: 1px 1px 1px black, 0 0 5px blue;
+  text-shadow: 1px 1px 1px black, 0 0 5px #802bb1;
 }
 
 
 .ReviewContainer{
   /* background-color: aqua; */
+
   padding-top: 2%;
-  margin: auto;
+  margin-left: 5vw;
   margin-top: 5%;
   margin-bottom: 5%;
   width: 90%;
   min-width: 250px;
 }
+.ReviewContainer h1 u i{
+  text-shadow: 1px 1px 1px black, 0 0 5px #802bb1;
+  color: #fff
+}
+
 
 .CardHolder{
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 
@@ -55,8 +58,8 @@ code {
   background: lightblue;
   /* border: 1px solid #999; */
   align-items: center;
-  min-width: 25vh;
-  max-width: 35vh;
+  /* width: 25vh; */
+  width: 35vh;
   padding-right: 5%;
   padding-left: 5%;
   padding-top: 2%;
@@ -66,7 +69,7 @@ code {
 
 .SignHolder{
   border: 1px solid #999;
-  background: lightgreen;
+  background: #802bb1;
   height: auto;
   /* max-width: 20%; */
   min-width: 180px;
@@ -76,10 +79,12 @@ code {
   /* float: left; */
   padding-bottom: 10px;
   padding-top: 10px;
+  text-shadow: 1px 1px 1px black, 0 0 5px #802bb1;
+  color: #fff
 }
 .FilterFormHolder{
   border: 1px solid #999;
-  background: lightgreen;
+  background: #802bb1;
   height: auto;
   min-width: 180px;
   margin-top: 5vh;
@@ -88,6 +93,8 @@ code {
   /* float: left; */
   padding-bottom: 10px;
   padding-top: 10px;
+  text-shadow: 1px 1px 1px black, 0 0 5px #802bb1;
+  color: #fff
 }
 
 .SigningHolder{

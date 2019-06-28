@@ -20,7 +20,8 @@ class ReviewContainer extends Component {
           <h1><u><i>Review List</i></u></h1>
           <br />
           {createReview}
-          <div className="CardHolder">
+
+          <div className="CardHolder w3-container w3-center w3-animate-opacity">
             {renderReviews}
           </div>
         </div>
