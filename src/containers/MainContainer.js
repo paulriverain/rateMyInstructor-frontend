@@ -76,6 +76,10 @@ class MainContainer extends Component {
     this.props.history.push("/")
   }
 
+  handleSendHome = () =>{
+    this.props.history.push("/")
+  }
+
   getToLogin = () => {
     this.props.history.push("/login")
   }
@@ -102,6 +106,14 @@ class MainContainer extends Component {
 
 handleDelete = (thisReview) =>{
   this.setState({reviews: this.state.reviews.filter((review) => review !== thisReview)})
+}
+
+
+handleFormClear=()=>{
+  console.log("hit main");
+  this.setState({sortNumber: 0})
+  this.setState({bootCamp: ''})
+  this.setState({term: ''})
 }
 
 
@@ -160,7 +172,7 @@ handleDelete = (thisReview) =>{
               <Fragment>
 
                 <div className="barshifter">
-                  <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/><br />
+                  <FilterHolder clearForm={this.handleFormClear} handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/><br />
 
                   {this.state.currentStudent ?
                     <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
@@ -175,7 +187,7 @@ handleDelete = (thisReview) =>{
           }}/>
 
           <Route exact path="/login" render={ () => {
-            return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
+            return <SignInUpHolder sendHome={this.handleSendHome}signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
 
           </div>

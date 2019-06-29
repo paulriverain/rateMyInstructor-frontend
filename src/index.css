@@ -98,10 +98,27 @@ code {
 }
 
 .SigningHolder{
-  border: 1px solid #999;
+  /* border: 1px solid #999; */
   min-height: auto;
-  height: 25vh;
+  /* height: 25vh; */
+  padding: 2vw;
   min-width: auto;
+}
+
+.SignFormHolder{
+  border: 1px solid #999;
+  background: #802bb1;
+  min-width: 180px;
+  margin: 10%;
+  padding: 10vw;
+  padding-top: 10vw;
+  text-shadow: 1px 1px 1px black, 0 0 5px #802bb1;
+  color: #fff
+}
+.homeish{
+  margin-left: 2vw;
+  margin-top: 1vh;
+  float: left;
 }
 
 

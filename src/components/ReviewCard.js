@@ -81,8 +81,9 @@ handleClick = (e) =>{
           <h5><i>Description:</i>  {revs.comment}</h5>
           <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
           <h4><i>Bootcamp:</i> {revs.instructor.bootcamp_name}</h4>
-          <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
+          <p>{me ? (me.id === revs.student_id ? <button className="ui primary button"  value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
           </div>: <EditReview editRerendersCards={this.props.editRerendersCards} deleteCards={this.props.deleteCards} signedIn={this.props.signedIn} review={this.props.review} handleClick={this.handleClick} rerendersCards={this.props.rerendersCards}/>}
+          <br />
         </div>
     );
   }

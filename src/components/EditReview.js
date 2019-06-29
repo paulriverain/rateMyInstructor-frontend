@@ -126,10 +126,10 @@ class EditReview extends Component {
             <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
             <p>Rating: <input type="number" min="1" max='5' placeholder="#" name="rating" value={this.state.review.rating} onChange={this.handleChange}/></p>
             <p>Description: <textarea  placeholder="description" name="comment" value={this.state.review.comment} onChange={this.handleChange}/></p>
-            <p><input type="submit" value="Submit"/></p>
-          </form>
-          <button value="deleteBtn" onClick={this.handleDelete}>Delete Review</button>
-        <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.props.handleClick}>Back to Review</button> : null) : null}</p>
+            <p><input className="ui primary button"  type="submit" value="Submit"/></p>
+          </form><br />
+          <button value="deleteBtn" className="ui button"  onClick={this.handleDelete}>Delete Review</button>
+        <p><br />{me ? (me.id === revs.student_id ? <button className="ui primary button"  value="editBtn" onClick={this.props.handleClick}>Back to Review</button> : null) : null}</p>
         </div>
     );
   }

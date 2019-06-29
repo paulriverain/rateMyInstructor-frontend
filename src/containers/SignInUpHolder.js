@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import StudentSignin from '../components/StudentSignin'
 import StudentSignup from '../components/StudentSignup'
@@ -9,7 +9,6 @@ class SignInUpHolder extends Component {
 
 
 
-  
   render(){
     const signIn =
       <Router>
@@ -19,17 +18,29 @@ class SignInUpHolder extends Component {
 
 
     return (
-      <div className="SignHolder" >
+        <Fragment>
+      <div className='homeish'>
+        <button className='ui button' onClick={this.props.sendHome} name="logoutBtn"><h3>Home Page</h3></button>
+      </div>
+
+      <div className="SignFormHolder" >
       { !this.props.signedIn ?
-        (
+        <Fragment>
+
+
           <div>
-          <h3><i>Sign In</i></h3>
-          {signIn}
-          {signUp}
-          </div>) :
-        <p><button type='button' onClick={this.props.onLogout} name="logoutBtn"><h3>LOG OUT</h3></button></p>
-      }
+            <h1><i>Sign In</i></h1>
+            {signIn}
+            {signUp}
+            <br /><br />
+          </div>
+        </Fragment>
+          :
+        <p><button type='button' onClick={this.sendHome}><h3>LOG OUT</h3></button></p>
+
+      }<br />
     </div>
+      </Fragment>
     );
   }
 }

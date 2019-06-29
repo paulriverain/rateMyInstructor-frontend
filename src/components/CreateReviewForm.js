@@ -66,7 +66,7 @@ class CreateReviewForm extends Component {
       <div className="CreateReviewForm" >
       <form onSubmit={this.submitHandler} >
 
-        <select name="instructor_id" onChange={this.handleChange}>
+        <select className="ui dropdown"  name="instructor_id" onChange={this.handleChange}>
           <option value="">Instructors...</option>
           {this.state.instructors.sort( (a,b) => (a.last_name > b.last_name) ? 1 : -1).map( instructor => {
             return <option key={instructor.id} value={instructor.id}>{instructor.last_name}, {instructor.first_name}</option>
@@ -74,9 +74,9 @@ class CreateReviewForm extends Component {
         </select> <br /><br />
 
 
-          <p>Rating: <input type="number" min="1" max='5' placeholder="#" name="rating" value={this.state.review.rating} onChange={this.handleChange}/></p><br />
+          <h3>Rating: <input type="number" min="1" max='5' placeholder="#" name="rating" value={this.state.review.rating} onChange={this.handleChange}/></h3><br />
 
-          <p>Description: <textarea  placeholder="description" name="comment" value={this.state.review.comment} onChange={this.handleChange}/></p><br />
+          <h3>Description:<br /> <textarea  placeholder="Description" name="comment" value={this.state.review.comment} onChange={this.handleChange}/></h3><br />
 
           <p><input className="ui primary button" type="submit" value="Submit"/></p><br />
         </form>
