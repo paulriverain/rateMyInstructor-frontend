@@ -17,9 +17,13 @@ class ReviewContainer extends Component {
     return (
       <div className="ui eight column grid">
         <div className="ReviewContainer" >
-          <h2>Review List</h2>
+          <h1><u><i>Review List</i></u></h1>
+          <br />
           {createReview}
-          {renderReviews}
+
+          <div className="CardHolder w3-container w3-center w3-animate-opacity">
+            {renderReviews}
+          </div>
         </div>
       </div>
     );

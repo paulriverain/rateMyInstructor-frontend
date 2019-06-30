@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 
 class StudentSignup extends Component {
@@ -7,11 +7,16 @@ class StudentSignup extends Component {
     first_name: "",
     last_name: "",
     password: "",
-    error: ""
+    error: "",
+    buttonHit: false
   }
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
+  }
+
+  handleShowForm = () => {
+    this.setState({buttonHit: !this.state.buttonHit})
   }
 
   createNewStudent = (e) => {
@@ -43,13 +48,23 @@ class StudentSignup extends Component {
   render(){
     return (
       <div className="SigningHolder">
-        <p><b>Create Account</b></p>
-        <form onSubmit={this.createNewStudent}>
-          Create First Name:<input type="text"  placeholder="new first name" name="first_name" value={this.state.first_name} onChange={this.handleChange}/><br />
-          Create Last Name:<input type="text"  placeholder="new last name" name="last_name" value={this.state.last_name} onChange={this.handleChange}/><br />
-          Create Password: <input type="password"  placeholder="new password" name="password" value={this.state.password} onChange={this.handleChange}/><br />
-          <input type="submit" value="Submit"/>
+
+
+      {this.state.buttonHit ?
+
+      <Fragment>
+        <h2><b>Create Account</b></h2>
+        <form className="ui form" onSubmit={this.createNewStudent}>
+          <h3><b>Create First Name:</b><br />   <input type="text"  placeholder="New First Name" name="first_name" value={this.state.first_name} onChange={this.handleChange}/></h3>
+          <h3><b>Create Last Name:</b><br />  <input type="text"  placeholder="New Last Name" name="last_name" value={this.state.last_name} onChange={this.handleChange}/></h3>
+          <h3><b>Create Password:</b><br />   <input type="password"  placeholder="New Password" name="password" value={this.state.password} onChange={this.handleChange}/></h3><br />
+          <input className="ui primary button" type="submit" value="Submit"/>
         </form>
+        </Fragment>
+        :
+        <button className="ui button" onClick={this.handleShowForm}>Create Account</button>
+      }
+
       </div>
     );
   }

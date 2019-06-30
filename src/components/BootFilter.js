@@ -8,7 +8,7 @@ class BootFilter extends Component {
 
     return (
       <div className="BootFilter" >
-        <p> Select BootCamp:
+        <h4> Select BootCamp: </h4>
           <select onChange={this.props.selectBootCamp}>
             <option value="">BootCamps...</option>
             <option value="Flatiron School">Flatiron School</option>
@@ -21,7 +21,7 @@ class BootFilter extends Component {
             <option value="App Academy">App Academy</option>
             <option value="Startup Institute">Startup Institute</option>
           </select>
-        </p>
+
       </div>
     );
   }

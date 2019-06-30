@@ -63,17 +63,16 @@ handleClick = (e) =>{
     return (
       <div className="ReviewCard">
       { !this.state.editing ?<div className="reviewInfo">
+      <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
           <h3><i>Instructor Name:</i></h3>
           <h2>{revs.instructor.first_name} {revs.instructor.last_name} </h2>
-          <p><i>Date:</i>  {this.sanitizeDate(revs.updated_at)}</p>
 
           {
             revs.rating === 1 || revs.rating === 2 ?
-            <h4 style={{ color: 'red' }}><i>Rating:</i> {revs.rating}</h4>
-            :
-            <div>
-              {revs.rating === 3 || revs.rating === 4 ? <h4 style={{ color: '#fda50f' }}><i>Rating:</i> {revs.rating}</h4>
-              : <h4 style={{ color: 'green' }}><i>Rating:</i> {revs.rating}</h4>
+            <h3 style={{ color: 'red' }}><i>Rating:</i> <p className="w3-badge w3-red">{revs.rating}</p></h3>
+            :<div>
+              {revs.rating === 3 || revs.rating === 4 ? <h3 style={{ color: '#fda50f' }}><i>Rating:</i> <p className="w3-badge w3-yellow">{revs.rating}</p></h3>
+              : <h3 style={{ color: 'green' }}><i>Rating:</i>  <p className="w3-badge w3-green">{revs.rating}</p></h3>
               }
             </div>
           }
@@ -81,9 +80,10 @@ handleClick = (e) =>{
 
           <h5><i>Description:</i>  {revs.comment}</h5>
           <h4><i>Student:</i>  {revs.student.first_name} {revs.student.last_name}  </h4>
-          <p>{revs.instructor.bootcamp_name}</p>
-          <p>{me ? (me.id === revs.student_id ? <button value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
+          <h4><i>Bootcamp:</i> {revs.instructor.bootcamp_name}</h4>
+          <p>{me ? (me.id === revs.student_id ? <button className="ui primary button"  value="editBtn" onClick={this.handleClick} >Edit Review</button> : null) : null}</p>
           </div>: <EditReview editRerendersCards={this.props.editRerendersCards} deleteCards={this.props.deleteCards} signedIn={this.props.signedIn} review={this.props.review} handleClick={this.handleClick} rerendersCards={this.props.rerendersCards}/>}
+          <br />
         </div>
     );
   }

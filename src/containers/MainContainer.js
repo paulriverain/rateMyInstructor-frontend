@@ -4,6 +4,7 @@ import Header from './Header'
 import FilterHolder from './FilterHolder'
 import SignInUpHolder from './SignInUpHolder';
 import { Route, withRouter } from 'react-router-dom';
+import 'semantic-ui/dist/semantic.min.css';
 
 
 class MainContainer extends Component {
@@ -75,6 +76,10 @@ class MainContainer extends Component {
     this.props.history.push("/")
   }
 
+  handleSendHome = () =>{
+    this.props.history.push("/")
+  }
+
   getToLogin = () => {
     this.props.history.push("/login")
   }
@@ -101,6 +106,14 @@ class MainContainer extends Component {
 
 handleDelete = (thisReview) =>{
   this.setState({reviews: this.state.reviews.filter((review) => review !== thisReview)})
+}
+
+
+handleFormClear=()=>{
+  console.log("hit main");
+  this.setState({sortNumber: 0})
+  this.setState({bootCamp: ''})
+  this.setState({term: ''})
 }
 
 
@@ -145,32 +158,39 @@ handleDelete = (thisReview) =>{
     const currStud = this.state.currentStudent
     return (
 
-      <div className="MainContainer">
+      <div>
         <Header signedIn={currStud}/>
+        <div className="MainContainer">
 
+        <div id='stars'></div>
+        <div id='stars2'></div>
+        <div id='stars3'></div>
 
           <Route exact path="/" render={ () => {
 
             return (
               <Fragment>
-                <FilterHolder handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/>
 
+                <div className="barshifter">
+                  <FilterHolder clearForm={this.handleFormClear} handleInstrSearch={this.handleInstrSearch} term={this.state.term} selectSort={this.handleSort} selectBootCamp={this.handleBoot}/><br />
+
+                  {this.state.currentStudent ?
+                    <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
+                    : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
+                  }
+                </div>
                 <ReviewContainer reviews={this.displayReviews().filter( review => this.state.bootCamp === review.instructor.bootcamp_name || this.state.bootCamp === "")} editRerendersCards={this.handleEditRerenderHome} rerendersCards={this.handleRerenderHome} deleteCards={this.handleDelete} signedIn={currStud}/>
 
 
-                {this.state.currentStudent ?
-                  <div className="SignHolder"><p><button type='button' onClick={this.handleLogoutClick} name="logoutBtn"><h3>LOG OUT</h3></button></p></div>
-                  : <div className="SignHolder"><p><button type='button' onClick={this.getToLogin} name="signInBtn"><h3>LOG IN</h3></button></p></div>
-                }
               </Fragment>
             )
           }}/>
 
           <Route exact path="/login" render={ () => {
-            return <SignInUpHolder signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
+            return <SignInUpHolder sendHome={this.handleSendHome}signedIn={currStud} onLogin={this.handleLogin} onLogout={this.handleLogoutClick}/>
           }}/>
 
-
+          </div>
       </div>
     );
   }

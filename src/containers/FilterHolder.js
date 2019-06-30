@@ -9,6 +9,8 @@ class FilterHolder extends Component {
 //====================================
 //=======Holds Filter Actions=========
 
+
+
   render(){
     const filterForm = <FilterForm handleInstrSearch={this.props.handleInstrSearch} term={this.props.term}/>
     const sortDrop  = <SortDrop selectSort={this.props.selectSort}/>
@@ -18,9 +20,14 @@ class FilterHolder extends Component {
       <div className="FilterContainer" >
         <div className = "FilterFormHolder">
             <h2>Filter Reviews</h2>
+            <br />
             {filterForm}
+            <br />
             {sortDrop}
+            <br />
             {bootFilter}
+            <br />
+            <button onClick={this.props.clearForm}>Clear Form</button>
           </div>
       </div>
     );
