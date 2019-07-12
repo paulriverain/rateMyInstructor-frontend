@@ -21,7 +21,7 @@ class StudentSignup extends Component {
 
   createNewStudent = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/students", {
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/students`, {
       method: "POST",
       headers: {
         "Accept": "application/json",

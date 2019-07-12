@@ -16,7 +16,7 @@ class CreateReviewForm extends Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/instructors')
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/instructors`)
     .then(res => res.json())
     .then(allInstructors => this.setState({instructors: allInstructors}))
   }
@@ -37,8 +37,8 @@ class CreateReviewForm extends Component {
     e.preventDefault()
     // this.props.rerendersCards(this.state.review)///-====-
 
-    fetch('http://localhost:3000/api/v1/reviews',{
-      method: "POST",
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/reviews`,{
+    method: "POST",
       headers:{
         "Content-Type": "application/json",
         Accept: "application/json"

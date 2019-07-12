@@ -16,7 +16,7 @@ class StudentSignin extends Component {
 
   handlesLoginFetch= (e) => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/v1/auth',{
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/auth`,{
       method: 'POST',
       headers:{
         "Content-Type": 'application/json',

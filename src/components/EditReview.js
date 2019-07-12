@@ -77,7 +77,7 @@ class EditReview extends Component {
 
   submitHandler = (e) =>{
     console.log(e);
-    fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/reviews/${this.props.review.id}`,{
       method: "PATCH",
       headers:{
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ class EditReview extends Component {
     e.preventDefault()
     this.props.deleteCards(this.props.review)
 
-    fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`,{
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/reviews/${this.props.review.id}`,{
       method: "DELETE",
       headers:{
         "Content-Type": "application/json",

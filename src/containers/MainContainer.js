@@ -20,17 +20,18 @@ class MainContainer extends Component {
     renderState: false
   }
 
+
   //===============================================
   //=================Fetch API=================
   componentDidMount(){
     //Fetches for all the reviews
-    fetch('http://localhost:3000/api/v1/reviews')
+    fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/reviews`)
     .then(res=> res.json())
     .then(reviews => this.setState({reviews: reviews}))
     //Fetches for the token
     const token = localStorage.getItem('token')
     if(token) {
-      fetch('http://localhost:3000/api/v1/current_user', {
+      fetch(`${process.env.REACT_APP_API_FOR_FETCH}/api/v1/current_user`, {
         headers: {
           Authenticate: token
         }
